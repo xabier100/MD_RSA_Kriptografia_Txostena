@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{basque-book}
 \usepackage[a4paper]{geometry}
 \usepackage[myheadings]{fullpage}
 \usepackage{fancyhdr}
@@ -31,17 +31,7 @@
 
 
 \usepackage{listings} %For code in appendix
-\lstset
-{ %Formatting for code in appendix
-    language=Matlab,
-    basicstyle=\footnotesize,
-    numbers=left,
-    stepnumber=1,
-    showstringspaces=false,
-    tabsize=4,
-    breaklines=true,
-    breakatwhitespace=false,
-}
+
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 \onehalfspacing
@@ -55,25 +45,19 @@
 \fancyhf{}
 \setlength\headheight{15pt}
 \fancyhead[R]{\MakeUppercase{matematika diskretua}}
-\fancyfoot[R]{\thepage}
+\fancyfoot[C]{\thepage}
 %-------------------------------------------------------------------------------
 % TITLE PAGE
 %-------------------------------------------------------------------------------
 
 \begin{document}
 
-\title{ \normalsize \textsc{Matematika Diskretua}
-		\\ [2.0cm]
-		\HRule{2pt} \\
-		\LARGE \textbf{RSA Kriptografia Txostena}
-		\HRule{2pt} \\ [0.5cm] \bigskip
-		\normalsize \today \vspace*{1\baselineskip}}
+\title{ \textbf{Matematika Diskretua\\ RSA Zifratze Algoritmoa} }
 
-\date{}
+\author{Xabier Garrote}
 
-\author{
-        \emph{Egilea:} \\ \\
-		Xabier Garrote }
+\date{\today a}
+
 
 \maketitle
 \newpage
@@ -82,15 +66,16 @@
 
 
 %--------------------------------------------------------------------% Documentuaren atalak ezberdinak hemendik aurrera ---------------------------------------------------------------------
-\section{Sarrera}
-\section{Inplementatutako funtzioen kodea}
+\chapter{Sarrera}
 
-\subsection{zkh 1.bertsioa}
+
+
+
+\chapter{Inplementatutako funtzioen kodea}
+\section{zkh 1.bertsioa}
 \begin{verbatim}
-    # Bi zenbaki oso emanik, a eta b, 
-    # zatitzaile komunetako handiena 
-    # kalkulatuko duen funtzioaren 
-    # inplementazioa Euklidesen algoritmoan 
+    # Bi zenbaki oso emanik, a eta b, zatitzaile komunetako handiena 
+    # kalkulatuko duen funtzioaren inplementazioa Euklidesen algoritmoan
     # oinarrituz:
     zkh <- function(a,b){ 
         c<-a;
@@ -103,7 +88,9 @@
         return(c)  
     }
 \end{verbatim}
-\subsubsection{Deiak funtzioari}
+
+\newpage
+\subsection{Deiak funtzioari}
 \begin{verbatim}
     > zkh(2689,4001)
     [1] 1
@@ -118,7 +105,7 @@
 
 \newpage
 
-\subsection{zkh 2.bertsioa}
+\section{zkh 2.bertsioa}
 \begin{verbatim}
     # Parametro moduan jasotako a,b Euklidesen algoritmoan oinarrituz
     # zatitzaile komunetako handiena itzuliko du
@@ -150,7 +137,7 @@
 
 \newpage
 
-\subsubsection{Deiak funtzioari}
+\subsection{Deiak funtzioari}
 \begin{verbatim}
     > zkh(231,1820)
     [1] 7
@@ -163,7 +150,7 @@
 \end{verbatim}
 
 \newpage
-\subsection{lehen\_erlatibo\_txiki}
+\section{lehen\_erlatibo\_txiki}
 \begin{verbatim}
     # Parametro moduan funtzioari pasatako m-rekin lehen erlatiboa 
     # den zenbaki oso positiborik txikiena itzuliko du
@@ -177,7 +164,7 @@
     }
 \end{verbatim}
 
-\subsubsection{Deiak funtzioari}
+\subsection{Deiak funtzioari}
 \begin{verbatim}
     > lehen_erlatibo_txiki(13797)
     [1] 2
@@ -194,7 +181,7 @@
     
 \newpage
 
-\subsection{RSA\_gakoak}
+\section{RSA\_gakoak}
 \begin{verbatim}
     # Bi zenbaki lehen emanik, p eta q, n, r eta s kalkulatuko 
     # ditu, eta irteera estandarretik inprimatu. r txikia kalkulatuko
@@ -207,7 +194,7 @@
         cat("n = ", n, ", r = ", r, ", s = ", s); 
     }
 \end{verbatim}
-\subsubsection{Deiak funtzioari}
+\subsection{Deiak funtzioari}
 \begin{verbatim}
     > RSA_gakoak(5,17)
     n =  85 , r =  3 , s =  43
@@ -221,7 +208,7 @@
 
 \newpage
 
-\subsection{kodetu}
+\section{kodetu}
 \begin{verbatim}
     # Parametro moduan txt karaktere string-a jaso eta dagozkion  
     # ASCII kodeak itzultzen ditu.
@@ -230,7 +217,7 @@
     }
 \end{verbatim}
 
-\subsubsection{Deiak funtzioari}
+\subsection{Deiak funtzioari}
 \begin{verbatim}
     # Ondoren, deskodetu funtzioarekin konprobatuko dugu  
     # ondo kodetu direla
@@ -250,7 +237,7 @@
 
 \newpage
 
-\subsection{deskodetu}
+\section{deskodetu}
 \begin{verbatim}
     # Parametro moduan ASCII kodeak jaso eta dagokion txt karaktere 
     # string-a itzultzen duen funtzioa.
@@ -259,7 +246,7 @@
     }   
 \end{verbatim}
 
-\subsubsection{Deiak Funtzioari}
+\subsection{Deiak Funtzioari}
 \begin{verbatim}
     # Kodetu funtzioarekin kodetutatko bektoreak 
     # deskodetuko ditugu
@@ -276,7 +263,7 @@
 
 \newpage
 
-\subsection{zifratu}
+\section{zifratu}
 \begin{verbatim}
     # Parametro moduan ASCII kodeez osatutako bektore bat jaso eta 
     # dagokion bektore zifratua itzuliko du
@@ -290,7 +277,7 @@
     }
 \end{verbatim}
 
-\subsubsection{Deiak funtzioari}
+\subsection{Deiak funtzioari}
 \begin{verbatim}
     > # Erabiliko ditugun gakoak:
     > # n=9797, r=7, s=2743
@@ -307,7 +294,7 @@
 
 \newpage
 
-\subsection{deszifratu}
+\section{deszifratu}
 \begin{verbatim}
     # Parametro moduan bektore zifratu bat jaso eta dagozkion 
     # ASCII kodeak itzuliko du
@@ -321,7 +308,7 @@
     }
 \end{verbatim}
 
-\subsubsection{Deiak funtzioari}
+\subsection{Deiak funtzioari}
 \begin{verbatim}
     > # RSA_gakoak(97,101) zenbaki lehenetatik lortutako gakoekin:
     > # n=9797, r=7, s=2743
@@ -337,11 +324,12 @@
     > testuberri_errekuperatua
     [1] "ea hau ondo doan..."
 \end{verbatim}
-\section{Bibliografia}
+
+\chapter{Bibliografia}
 
 
 
-\section{Iritzi pertsonala}
+\chapter{Iritzi pertsonala}
 
 
 
