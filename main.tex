@@ -1,0 +1,349 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[myheadings]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx, wrapfig, subcaption, setspace, booktabs}
+\usepackage[T1]{fontenc}
+\usepackage[font=small, labelfont=bf]{caption}
+\usepackage{fourier}
+\usepackage[protrusion=true, expansion=true]{microtype}
+\usepackage[basque]{babel}
+\usepackage{sectsty}
+\usepackage{url, lipsum}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage{ulem}
+\usepackage{spverbatim}
+\usepackage{multirow} %para las tablas
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{bera}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+
+
+\usepackage{listings} %For code in appendix
+\lstset
+{ %Formatting for code in appendix
+    language=Matlab,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\onehalfspacing
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+%-------------------------------------------------------------------------------
+% HEADER & FOOTER
+%-------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\setlength\headheight{15pt}
+\fancyhead[R]{\MakeUppercase{matematika diskretua}}
+\fancyfoot[R]{\thepage}
+%-------------------------------------------------------------------------------
+% TITLE PAGE
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+\title{ \normalsize \textsc{Matematika Diskretua}
+		\\ [2.0cm]
+		\HRule{2pt} \\
+		\LARGE \textbf{RSA Kriptografia Txostena}
+		\HRule{2pt} \\ [0.5cm] \bigskip
+		\normalsize \today \vspace*{1\baselineskip}}
+
+\date{}
+
+\author{
+        \emph{Egilea:} \\ \\
+		Xabier Garrote }
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+
+%--------------------------------------------------------------------% Documentuaren atalak ezberdinak hemendik aurrera ---------------------------------------------------------------------
+\section{Sarrera}
+\section{Inplementatutako funtzioen kodea}
+
+\subsection{zkh 1.bertsioa}
+\begin{verbatim}
+    # Bi zenbaki oso emanik, a eta b, 
+    # zatitzaile komunetako handiena 
+    # kalkulatuko duen funtzioaren 
+    # inplementazioa Euklidesen algoritmoan 
+    # oinarrituz:
+    zkh <- function(a,b){ 
+        c<-a;
+        d<-b;
+        while (d != 0) {
+            r=mod(c,d);
+            c=d;
+            d=r;
+        }
+        return(c)  
+    }
+\end{verbatim}
+\subsubsection{Deiak funtzioari}
+\begin{verbatim}
+    > zkh(2689,4001)
+    [1] 1
+    > zkh(1369,2597)
+    [1] 1
+    > zkh(3.2,4)
+    Error in mod(c, d) : 
+    Arguments 'n', 'm' must be integers or vectors of integers. 
+    > zkh("a","b")
+     Error in mod(c, d) : is.numeric(n) is not TRUE 
+\end{verbatim}
+
+\newpage
+
+\subsection{zkh 2.bertsioa}
+\begin{verbatim}
+    # Parametro moduan jasotako a,b Euklidesen algoritmoan oinarrituz
+    # zatitzaile komunetako handiena itzuliko du
+    # Parametro moduan zenbaki errealak pasaz gero, errore
+    # mezua erakutsiz, karaktereak pasaz gero, baita.
+    zkh <- function(a,b){ 
+        if(is.character(a)==FALSE & is.character(b)==FALSE){
+            c=abs(a)
+            d=abs(b)
+            if(isNatural(c)&isNatural(d)){
+                c<-a;
+                d<-b;
+                while (d != 0) {
+                    r=mod(c,d);
+                    c=d;
+                    d=r;
+                }
+                return(c)
+            }
+            else{
+                print('a eta b parametroak zenbaki osoak izan behar dute.')
+            }
+        }
+        else{  
+            print('a eta b ezin dira karaktereak izan.')
+        }
+    }
+\end{verbatim}
+
+\newpage
+
+\subsubsection{Deiak funtzioari}
+\begin{verbatim}
+    > zkh(231,1820)
+    [1] 7
+    > zkh(1369,2597)
+    [1] 1
+    > zkh(3.2,4)
+    [1] "a eta b parametroak zenbaki osoak izan behar dute." 
+    > zkh(5,'b')
+    [1] "a eta b ezin dira karaktereak izan."
+\end{verbatim}
+
+\newpage
+\subsection{lehen\_erlatibo\_txiki}
+\begin{verbatim}
+    # Parametro moduan funtzioari pasatako m-rekin lehen erlatiboa 
+    # den zenbaki oso positiborik txikiena itzuliko du
+    # RSA_gakoak funtzioa inplementatzeko erabiliko dugu
+    lehen_erlatibo_txiki <- function(m){
+        zk = 2
+        while (GCD(m, zk) != 1){
+            zk = zk + 1;
+        }
+        return(zk);
+    }
+\end{verbatim}
+
+\subsubsection{Deiak funtzioari}
+\begin{verbatim}
+    > lehen_erlatibo_txiki(13797)
+    [1] 2
+    > # 2
+    > lehen_erlatibo_txiki(16974)
+    [1] 5
+    > # 5
+    > lehen_erlatibo_txiki(56970)
+    [1] 7
+    > # 7
+    > lehen_erlatibo_txiki(1000000000000000)
+    [1] 3
+\end{verbatim}
+    
+\newpage
+
+\subsection{RSA\_gakoak}
+\begin{verbatim}
+    # Bi zenbaki lehen emanik, p eta q, n, r eta s kalkulatuko 
+    # ditu, eta irteera estandarretik inprimatu. r txikia kalkulatuko
+    # da.
+    RSA_gakoak <- function(p,q){
+        n = p * q;
+        m = (p - 1) * (q - 1);
+        r = lehen_erlatibo_txiki(m);
+        s = modinv(r, m);
+        cat("n = ", n, ", r = ", r, ", s = ", s); 
+    }
+\end{verbatim}
+\subsubsection{Deiak funtzioari}
+\begin{verbatim}
+    > RSA_gakoak(5,17)
+    n =  85 , r =  3 , s =  43
+    > RSA_gakoak(17,23)
+    n =  391 , r =  3 , s =  235
+    > RSA_gakoak(97,101)
+    n =  9797 , r =  7 , s =  2743
+    > RSA_gakoak(307,397)
+    n =  121879 , r =  5 , s =  96941
+\end{verbatim}
+
+\newpage
+
+\subsection{kodetu}
+\begin{verbatim}
+    # Parametro moduan txt karaktere string-a jaso eta dagozkion  
+    # ASCII kodeak itzultzen ditu.
+    kodetu <- function(txt){
+        return(strtoi(charToRaw(txt), 16L));
+    }
+\end{verbatim}
+
+\subsubsection{Deiak funtzioari}
+\begin{verbatim}
+    # Ondoren, deskodetu funtzioarekin konprobatuko dugu  
+    # ondo kodetu direla
+    > testu1<-"kaixo"
+    > kodebektore1<-kodetu(testu1)
+    > kodebektore1
+    [1] 107  97 105 120 111
+    > testu2<-"KAIXO"
+    > kodebektore2<-kodetu(testu2)
+    > kodebektore2
+    [1] 75 65 73 88 79
+    > testu3<-"Zer moduz?"
+    > kodebektore3<-kodetu(testu3)
+    > kodebektore3
+     [1]  90 101 114  32 109 111 100 117 122  63
+\end{verbatim}
+
+\newpage
+
+\subsection{deskodetu}
+\begin{verbatim}
+    # Parametro moduan ASCII kodeak jaso eta dagokion txt karaktere 
+    # string-a itzultzen duen funtzioa.
+    deskodetu <- function(kodetxt){
+        return(rawToChar(as.raw(kodetxt)));
+    }   
+\end{verbatim}
+
+\subsubsection{Deiak Funtzioari}
+\begin{verbatim}
+    # Kodetu funtzioarekin kodetutatko bektoreak 
+    # deskodetuko ditugu
+    > txt1<-deskodetu(kodebektore1)
+    > txt1
+    [1] "kaixo"
+    > txt2<-deskodetu(kodebektore2)
+    > txt2
+    [1] "KAIXO"
+    > txt3<-deskodetu(kodebektore3)
+    > txt3
+    [1] "Zer moduz?"
+\end{verbatim}
+
+\newpage
+
+\subsection{zifratu}
+\begin{verbatim}
+    # Parametro moduan ASCII kodeez osatutako bektore bat jaso eta 
+    # dagokion bektore zifratua itzuliko du
+    zifratu <- function(kodebektorea,r,n){
+        luzeera = length(kodebektorea);
+        for (i in 1:luzeera)
+        {
+            kodebektorea[i] = modpower(kodebektorea[i], r, n);
+        }
+        return(kodebektorea);
+    }
+\end{verbatim}
+
+\subsubsection{Deiak funtzioari}
+\begin{verbatim}
+    > # Erabiliko ditugun gakoak:
+    > # n=9797, r=7, s=2743
+    > bektorezifratu1<-zifratu(kodebektore1,7,9797)
+    > bektorezifratu1
+    [1] 2792 5432 4668 4973 7969
+    > bektorezifratu2<-zifratu(kodebektore2,7,9797)
+    > bektorezifratu2
+    [1] 7976 4764 2565 8540 4974
+    > bektorezifratu3<-zifratu(kodebektore3,7,9797)
+    > bektorezifratu3
+     [1]  375 2222 7721 3675  493 7969 6261 8564 4122 4604
+\end{verbatim}
+
+\newpage
+
+\subsection{deszifratu}
+\begin{verbatim}
+    # Parametro moduan bektore zifratu bat jaso eta dagozkion 
+    # ASCII kodeak itzuliko du
+    deszifratu <- function(bektorezifratu,s,n){
+        luzeera = length(bektorezifratu);
+        for (i in 1:luzeera)
+        {
+            bektorezifratu[i] = modpower(bektorezifratu[i], s, n);
+        }
+      return(bektorezifratu);
+    }
+\end{verbatim}
+
+\subsubsection{Deiak funtzioari}
+\begin{verbatim}
+    > # RSA_gakoak(97,101) zenbaki lehenetatik lortutako gakoekin:
+    > # n=9797, r=7, s=2743
+    > n<-9797
+    > r<-7
+    > s<-2743
+    > testuberria<-"ea hau ondo doan..."
+    > testuberri_zifratua <- zifratu(kodetu(testuberria),r,n)
+    > testuberri_zifratua
+     [1] 2222 5432 3675 1177 5432 8564 3675 7969 9305 6261
+    [11] 7969 3675 6261 7969 5432 9305 3037 3037 3037
+    > testuberri_errekuperatua <- deskodetu(deszifratu(testuberri_zifratua,s,n))
+    > testuberri_errekuperatua
+    [1] "ea hau ondo doan..."
+\end{verbatim}
+\section{Bibliografia}
+
+
+
+\section{Iritzi pertsonala}
+
+
+
+
+\end {document}
