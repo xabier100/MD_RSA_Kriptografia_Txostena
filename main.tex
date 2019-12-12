@@ -52,7 +52,7 @@
 
 \begin{document}
 
-\title{ \textbf{Matematika Diskretua\\ RSA Zifratze Algoritmoa} }
+\title{ \textbf{Matematika Diskretua\\ RSA Kriptografia Txostena} }
 
 \author{Xabier Garrote}
 
@@ -67,6 +67,84 @@
 
 %--------------------------------------------------------------------% Documentuaren atalak ezberdinak hemendik aurrera ---------------------------------------------------------------------
 \chapter{Sarrera}
+Euskaltzaindiaren arabera \textbf{kriptografia} "\textit{Ezkutuko kodeen bidez idazteko modua}" da. Hau da, mezu baten edukia igorleak eta hartzaileak \textbf{bakarrik} irakurtzeko kriptografia erabiltzen da.
+\\
+Igorleak mezua bidaltzean zifratu egiten du. Hartzaileak mezua jasotakoan deszifratu, egiten du irakurri ahal izateko. 
+\\
+
+Historian zehar hainbat kriptografia sistema ezberdin erabili dira.
+\begin{itemize}
+    \item Espartanoek K.a. V mendean mezuak ohial baten gainean idazten zituzten. Mezua zifratzeko ohiala loditasun jakin bateko makil baten gainean inguratzen zuten. Ondoren, mezua idazten zuten eta hartzaileari bidali. Hartzaileak mezua jasotzean igorlearen loditasun bereko makil batez baliatuz bertako edukia irakur zezakeen.
+    
+    
+    \newpage
+    
+    
+    \item Polybiosen zifratze-sistema K.a II mendean sortutakoa. 
+    \begin{center}
+        \begin{tabular}{ c |c |c| c| c| c| }
+            & \textbf{A}  & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} \\
+             \hline
+            \textbf{A}  &a  & b & c & d & e \\ 
+            \hline
+            \textbf{B}  &f  & g & h & i/j & k\\  
+            \hline
+            \textbf{C}  & l  & m & n & o & p \\
+            \hline
+            \textbf{D}  & q  & r & s & t & u\\
+            \hline
+            \textbf{E}  & v  & w & x & y & z
+        \end{tabular}
+    \end{center}
+    
+    Letra bakoitza matrizean duen kordenadengatik ordezkatzen da. Adibidez, \textbf{a} letra \textbf{AA} izango litzateke, \textbf{q} letra \textbf{DA} eta abar.
+    
+    Zifratze sistema hau 25 karakterentzako pentsatuta dago, beraz, guk erabiltzen dugun alfabetora egokitzeko i eta j lauki berean jarri behar dira.
+    
+    Mezua deszifratu ostean bi aukera geldituko dira i izatea edo j izatea baina kontextua eta hitzaren esker ez da dudarik egoten.
+    
+    Adibidez: \textbf{Wikipedia}
+    \begin{itemize}
+        \item Zifratzea:
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c|c|c|c|c|c|}
+                 W & i & k & i & p & e & d & i & a\\ 
+                 \hline
+                 EB & BD & BE & BD & CE & AE & AD & BD & AA
+            \end{tabular}
+        \end{center}
+        \begin{center}
+            Hitz zifratua:\textbf{EB BD BE BD CE AE AD BD AA}
+        \end{center}
+        \item Deszifratzea:
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c|c|c|c|c|c|}
+                EB & BD & BE & BD & CE & AE & AD & BD & AA\\
+                \hline
+                W & i/j & k & i/j & p & e & d & i/j & a\\ 
+            \end{tabular}
+            \\
+        \end{center}
+        \begin{center}
+             Hitz deszifratua:\textbf{Wikipedia}
+        \end{center}
+    \end{itemize}
+    
+    
+    \item Cesarren zifratua edo desplazamenduzko zifratua erromatarren orain dela 2000 urte asmatutakoa. 
+    
+    Erromatarrek, mezuak sekretu mantentzeko, jatorrizko mezuko letra bakoitza alfabetoan hiru posizio aurrerago zegoen letrarengatik ordezkatzen zuten. 
+    
+    Horrela, hartzaileak jasotako mezuko letra bakoitza alfabetoan hiru posizio atzerago zegoen letrarengatik ordezkatu behar zuen. Ordezkatu ostean jatorrizko mezua irakurtzeko gai zen.
+    
+    \includegraphics[scale=0.1]{Zesar_zifratu.png}
+
+    \begin{itemize}
+        \item \textbf{Jatorrizko alfabetoa}: abcdefghijklmnñopqrstuvwxyz
+        \item \textbf{Alfabeto zifratua}: defghijklmnñopqrstuvwxyzabc
+    \end{itemize}
+\end{itemize}
+
 
 
 
