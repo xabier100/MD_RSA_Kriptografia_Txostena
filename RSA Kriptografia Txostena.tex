@@ -161,7 +161,7 @@ Hasiera batean, erabilitako teknikak papera eta arkatzen bidezkoak ziren. Baina 
 
 \section{Bigarren gerra mundialaren ondoren}
 \subsection{RSA zifratze algoritmoa}
-RSA 1977 urtean Ronald Rivest, Adi Shamir eta Leonard Adlemanek sortu zuten kriptografia-sistema edo zifratze-sistema da.
+\textbf{RSA} 1977 urtean Ronald Rivest, Adi Shamir eta Leonard Adlemanek sortu zuten kriptografia-sistema edo zifratze-sistema da.
 \\\\
 Zenbaki teorian oinarritutako zifratze sistema bat da. Non pauso batzuk jarraituz, gako publiko eta pribatua kalkulatzen diren.
 \begin{itemize}
@@ -182,7 +182,7 @@ Hona hemen adibide bat:
     \textbf{Apa lagun;)}
     \end{itemize}
 \end{itemize}
-RSA-ren segurtasuna zenbaki handien faktorizatzeko probleman dago. Gaur egun, ez dago algoritmo eraginkorrik problema honi aurre egiteko. Beraz, gaur egun zifratze-sistema on bat da RSA gako handiak aukeratzen badira.
+\textbf{RSA}-ren segurtasuna zenbaki handien faktorizatzeko probleman dago. Gaur egun, ez dago algoritmo eraginkorrik problema honi aurre egiteko. Beraz, gaur egun zifratze-sistema on bat da \textbf{RSA} gako handiak aukeratzen badira.
 \begin{itemize}
     \item Goiko abidideko \textbf{n=143} faktorizatzen saiatzen bagara:
     \begin{verbatim}
@@ -206,11 +206,11 @@ Gako seguruak aurikitu ditugu:\newline
 \textbf{n=773977589210346518720862 , r =  2634758697353\newline
 , s = 391747678355017485524800}
 \\\\
-RSA-algoritmoa ikusi dugun bezala gaur egun segurua da eta ondorioz hainbat tokitan erabiltzen da esate baterako Whatsapp,DNI txarteletan eta TLS interneteko konexioen zertifikatuetan.
+\textbf{RSA} algoritmoa ikusi dugun bezala gaur egun segurua da eta ondorioz hainbat tokitan erabiltzen da esate baterako Whatsapp,DNI txarteletan eta TLS interneteko konexioen zertifikatuetan.
 \\\\
 Historian zehar ikusi dugun bezala, zifratze algoritmoak gero eta konplexuagoak dira. Algorimo zaharrak baztertuta gelditzen ziren heinean, seguruak ez zirelako algorimto konplexuagoak agertzen ziren.
 \\\\
-Gaurko egun RSA algoritmoaz aparte beste hainbat daude AES eta 3DES bezalakoak.
+Gaurko egun \textbf{RSA} algoritmoaz aparte beste hainbat daude \textbf{AES} eta \textbf{3DES} bezalakoak.
 \\\\
 \textbf{Baina, noiz arte jarraituko dute algoritmo hauek seguruak izaten??}
 
@@ -244,7 +244,7 @@ Gaurko egun RSA algoritmoaz aparte beste hainbat daude AES eta 3DES bezalakoak.
     Error in mod(c, d) : 
     Arguments 'n', 'm' must be integers or vectors of integers. 
     > zkh("a","b")
-     Error in mod(c, d) : is.numeric(n) is not TRUE 
+    Error in mod(c, d) : is.numeric(n) is not TRUE 
 \end{verbatim}
 
 \newpage
@@ -456,25 +456,27 @@ Gaurko egun RSA algoritmoaz aparte beste hainbat daude AES eta 3DES bezalakoak.
 
 \subsection{Deiak funtzioari}
 \begin{verbatim}
-    > # RSA_gakoak(97,101) zenbaki lehenetatik lortutako gakoekin:
+    > # Erabiliko ditugun gakoak:
     > # n=9797, r=7, s=2743
     > n<-9797
     > r<-7
     > s<-2743
-    > testuberria<-"ea hau ondo doan..."
-    > testuberri_zifratua <- zifratu(kodetu(testuberria),r,n)
-    > testuberri_zifratua
-     [1] 2222 5432 3675 1177 5432 8564 3675 7969 9305 6261
-    [11] 7969 3675 6261 7969 5432 9305 3037 3037 3037
-    > testuberri_errekuperatua <- deskodetu(deszifratu(testuberri_zifratua,s,n))
-    > testuberri_errekuperatua
-    [1] "ea hau ondo doan..."
+    > # Probak:
+    > deszifratua1<-deskodetu(deszifratu(bektorezifratu1,s,n))
+    > deszifratua1
+    [1] "kaixo"
+    > deszifratua2<-deskodetu(deszifratu(bektorezifratu2,s,n))
+    > deszifratua2
+    [1] "KAIXO"
+    > deszifratua3<-deskodetu(deszifratu(bektorezifratu3,s,n))
+    > deszifratua3
+    [1] "Zer moduz?"
 \end{verbatim}
 
 
 \chapter{Iritzi pertsonala}
 
-Lehenengo eta behin, Matematika Diskretuan kriptografia buruz egindako laborategiak asko gustatu zaizkit. Alde batetik, oso interesgarriak iruditu zaizkit RSA zifratze algoritmoaren funtzionamendua ikasteko. Gainera, denbora ziztu bizian pasatzen zen. Bestetik, laborategi saio gehiago izatea nahiko nuke RSA aparte beste zifratze algoritmoren bat aztertzeko, esate baterako \href{https://eu.wikipedia.org/wiki/Advanced_Encryption_Standard}{\textbf{AES}} edo \href{https://eu.wikipedia.org/wiki/DES_Hirukoitza}{\textbf{3DES}}. Aldiz, badakit horretarako ikasketa plana aldatu beharko zela eta hori ez da gauza erraza.
+Lehenengo eta behin, Matematika Diskretuan kriptografia buruz egindako laborategiak asko gustatu zaizkit. Alde batetik, oso interesgarriak iruditu zaizkit \textbf{RSA} zifratze algoritmoaren funtzionamendua ikasteko. Gainera, denbora ziztu bizian pasatzen zen. Bestetik, laborategi saio gehiago izatea nahiko nuke \textbf{RSA} aparte beste zifratze algoritmoren bat aztertzeko, esate baterako \href{https://eu.wikipedia.org/wiki/Advanced_Encryption_Standard}{\textbf{AES}} edo \href{https://eu.wikipedia.org/wiki/DES_Hirukoitza}{\textbf{3DES}}. Aldiz, badakit horretarako ikasketa plana aldatu beharko zela eta hori ez da gauza erraza.
 \\\\
 Bigarrenik, laborategi saioak ondoren RSA kriptografia txosten bat idatzi dugu. Txostena egiteko oso ondo moldatu nahiz. Izan ere,ikasle errepikatzailea nahiz eta latex lehengo urtetik ezagutzen nuen. Gauzak horrela, Latex-eko aginduekin ez dut problemarik izan eta informazio gehiena wikipedia, xlsemanal eta informatikaren buruzko blogetan aurkitu dut.
 \\\\
